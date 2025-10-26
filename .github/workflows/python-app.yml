@@ -1,0 +1,19 @@
+name: Install dependencies and running tests
+
+on:
+  push:
+    branches: [ "develop", "feature" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the repository
+    - uses: actions/checkout@v4
+    - name: Install dependencies
+      run: |
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Run tests
+      run: |
+        pytest
